@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import './App.css'
+import {Outlet} from 'react-router-dom'
+import toast , {Toaster} from 'react-hot-toast'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-    <p className='text-red-700'>Anwesha</p>
+    <Toaster/>
+<main>
+  <Outlet/>
+</main>
     </>
   )
 }
