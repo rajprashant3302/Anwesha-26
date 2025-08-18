@@ -1,85 +1,67 @@
-// src/context/AuthContext.jsx
-import React, { createContext, useContext, useEffect, useState, useMemo } from "react";
-import {
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../lib/firebase";
+import React, { createContext, useContext, useState } from "react";
+import { auth, db } from "../firebase/firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 
-// Default context structure
-const AuthUserContext = createContext({
-  authUser: null,
-  loading: true,
-  signOutUser: async () => {},
-  signInWithEmail: async () => {},
-  signUpWithEmail: async () => {},
-});
+const AuthUserContext = createContext();
 
 export function AuthUserProvider({ children }) {
-  const [authUser, setAuthUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  // Listen for auth state changes
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setAuthUser(user);
-      setLoading(false);
+  // Register new user
+  const registerUser = async (email, password) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+
+      const userDoc = {
+        uid: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        anweshaId: null,
+        createdAt: Date.now(),
+        status: "pending",
+        personal: {},
+        college: {},
+        qrEnabled: false,
+        qrTokenId: null,
+        events: [],
+      };
+
+      await setDoc(doc(db, "users", user.uid), userDoc);
+      setCurrentUser(userDoc);
+
+      return userDoc;
+    } catch (error) {
+      toast.error(error.message);
+      return null;
+    }
+  };
+
+  // Update user info in Firestore
+  const updateUser = async (uid, updatedData) => {
+    const ref = doc(db, "users", uid);
+    await setDoc(ref, updatedData, { merge: true });
+    setCurrentUser((prev) => ({ ...prev, ...updatedData }));
+  };
+
+  const finalizeRegistration = async (uid, formData) => {
+    const anweshaId = `ANW-MUL-${Math.floor(100000 + Math.random() * 900000)}`;
+    await updateUser(uid, {
+      anweshaId,
+      status: "successful",
+      ...formData,
     });
-    return () => unsubscribe();
-  }, []);
-
-  // Sign out
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Sign out error:", error.message);
-      throw error;
-    }
+    return anweshaId;
   };
 
-  // Sign up with email/password
-  const signUpWithEmail = async (email, password) => {
-    try {
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      return user;
-    } catch (error) {
-      console.error("Sign up error:", error.message);
-      throw error;
-    }
-  };
-
-  // Sign in with email/password
-  const signInWithEmail = async (email, password) => {
-    try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-      return user;
-    } catch (error) {
-      console.error("Sign in error:", error.message);
-      throw error;
-    }
-  };
-
-  // Prevent unnecessary re-renders
-  const value = useMemo(
-    () => ({
-      authUser,
-      loading,
-      signOutUser,
-      signInWithEmail,
-      signUpWithEmail,
-    }),
-    [authUser, loading]
-  );
 
   return (
-    <AuthUserContext.Provider value={value}>
-      {loading ? <div>Loading...</div> : children}
+    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser ,finalizeRegistration}}>
+      {children}
     </AuthUserContext.Provider>
   );
 }
 
-// Custom hook
-export const useAuth = () => useContext(AuthUserContext);
+export const useAuthUser = () => useContext(AuthUserContext);
