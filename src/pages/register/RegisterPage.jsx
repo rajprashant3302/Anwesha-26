@@ -1,5 +1,5 @@
 // src/pages/register/RegisterPage.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Step1EmailPassword from "./Step1Email";
 import Step2Personal from "./Step2Personal";
 import Step3College from "./Step3College";
@@ -12,10 +12,33 @@ export default function RegisterPage() {
   const [formData, setFormData] = useState({});
   const [anweshaId, setAnweshaId] = useState(null);
 
+  const { currentUser } = useAuthUser();
 
   const next = () => setStep((prev) => prev + 1);
 
+  useEffect(() => {
+    if (!currentUser) return;
 
+    console.log(currentUser)
+
+    switch (currentUser.status) {
+      case "1":
+        setStep(2);
+        break;
+      case "2":
+        setStep(3);
+        break;
+      case "3":
+        setStep(4);
+        break;
+      case "successful":
+        setAnweshaId(currentUser.anweshaId);
+        setStep(5);
+        break;
+      default:
+        setStep(1);
+    }
+  }, [currentUser]);
 
   return (
     <div className="max-w-lg mx-auto mt-10 shadow-lg p-6 rounded bg-black text-white">
@@ -49,7 +72,6 @@ export default function RegisterPage() {
           }}
         />
       )}
-
       {step === 5 && <Step5Success anweshaId={anweshaId} />}
     </div>
   );

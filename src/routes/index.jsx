@@ -4,7 +4,8 @@ import AuthLayouts from "../layout/index";
 import RegisterPage from "../pages/register/RegisterPage";
 import LoginPage from "../pages/login/LoginPage";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
-
+import EventList from "../pages/events/EventList"
+import EventPage from "../pages/events/EventPage"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,11 +31,33 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
-
       {
-        path: "dashboard",
-        element: <DashboardPage />,
+        path: "events",
+        element: (
+          <AuthLayouts>
+            <EventList />
+          </AuthLayouts>
+        ),
+
       },
+      {
+        path: "/event/:id",
+        element: (
+          <AuthLayouts>
+            <EventPage />
+          </AuthLayouts>
+        ),
+      },
+            {
+        path: "/dashboard",
+        element: (
+          <AuthLayouts>
+           <DashboardPage/>
+          </AuthLayouts>
+        ),
+      },
+
+
     ],
   },
 ]);
