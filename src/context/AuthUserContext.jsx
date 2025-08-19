@@ -1,8 +1,12 @@
+
+
 import React, { createContext, useContext, useState } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc,getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
+
+import {  runTransaction } from "firebase/firestore";
 
 const AuthUserContext = createContext();
 
@@ -31,6 +35,8 @@ export function AuthUserProvider({ children }) {
 
       await setDoc(doc(db, "users", user.uid), userDoc);
       setCurrentUser(userDoc);
+      // await setDoc(doc(db,'lastID'),'000001');
+
 
       return userDoc;
     } catch (error) {
@@ -46,15 +52,45 @@ export function AuthUserProvider({ children }) {
     setCurrentUser((prev) => ({ ...prev, ...updatedData }));
   };
 
+
   const finalizeRegistration = async (uid, formData) => {
-    const anweshaId = `ANW-MUL-${Math.floor(100000 + Math.random() * 900000)}`;
-    await updateUser(uid, {
-      anweshaId,
-      status: "successful",
-      ...formData,
-    });
-    return anweshaId;
+    const lastIdRef = doc(db, 'lastId', 'FSnK4Uxwu1faW1jfy0wk');
+  
+    try {
+      const anweshaId = await runTransaction(db, async (transaction) => {
+        const docSnapshot = await transaction.get(lastIdRef);
+  
+        if (!docSnapshot.exists()) {
+          throw new Error("Last ID document not found!");
+        }
+  
+        let lastId = docSnapshot.data().lastId;
+        lastId++; // Increment the counter
+        const newAnweshaId = `ANW-MUL-${lastId.toString().padStart(6, '0')}`;
+  
+        // Update the user's document
+        await updateUser(uid, {
+          anweshaId: newAnweshaId,
+          status: "successful",
+          ...formData,
+        });
+  
+        // Update the lastId document within the transaction
+        transaction.update(lastIdRef, { lastId: lastId });
+  
+        return newAnweshaId;
+      });
+  
+      toast.success("Anwesha ID generated successfully.");
+      return anweshaId;
+  
+    } catch (error) {
+      toast.error("Failed to generate Anwesha ID: " + error.message);
+      console.log(error.message);
+      return null;
+    }
   };
+  
 
 
   return (
@@ -64,4 +100,5 @@ export function AuthUserProvider({ children }) {
   );
 }
 
-export const useAuthUser = () => useContext(AuthUserContext);
+ export const useAuthUser = () => useContext(AuthUserContext);
+
