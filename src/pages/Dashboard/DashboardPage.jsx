@@ -56,7 +56,7 @@ export default function Dashboard() {
   const handleLogout = async () => {
     await signOut(auth);
     toast.success("Logged out successfully!");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
