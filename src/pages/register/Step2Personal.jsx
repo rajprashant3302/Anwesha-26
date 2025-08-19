@@ -19,34 +19,40 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!currentUser) return toast.error("Please login first");
+  e.preventDefault();
+  if (!currentUser) return toast.error("Please login first");
 
-    try {
-      // Save to parent formData (for preview later)
-      setFormData({ ...formData, ...localData });
+  try {
+   
+    setFormData({ ...formData, ...localData });
 
-      // Update Firestore under "personal" and "contact" key
-      await updateUser(currentUser.uid, {
-        personal: {
-          firstName: localData.firstName,
-          lastName: localData.lastName,
-          dob: localData.dob,
-          gender: localData.gender
-        },
-        contact: {
-          phone: localData.phone,
-          address: localData.address
-        }
-      });
+   
+    const newStatus = formData.status && parseInt(formData.status) > 2 
+      ? formData.status 
+      : "2";
 
-      localStorage.setItem("uid", currentUser.uid);
-      toast.success("Personal details saved!");
-      onNext(); 
-    } catch (err) {
-      toast.error("Error saving personal info: " + err.message);
-    }
-  };
+    await updateUser(currentUser.uid, {
+      personal: {
+        firstName: localData.firstName,
+        lastName: localData.lastName,
+        dob: localData.dob,
+        gender: localData.gender,
+      },
+      contact: {
+        phone: localData.phone,
+        address: localData.address,
+      },
+      status: newStatus,
+    });
+
+    localStorage.setItem("uid", currentUser.uid);
+    toast.success("Personal details saved!");
+    onNext();
+  } catch (err) {
+    toast.error("Error saving personal info: " + err.message);
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">

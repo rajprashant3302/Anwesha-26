@@ -26,16 +26,18 @@ export default function Step3CollegeDetails({ next }) {
         city,
       };
 
-
       await updateDoc(doc(db, "users", currentUser.uid), {
         college: collegeDetails,
+        status: "3",
       });
 
-
-      updateUser(currentUser.uid, { college: collegeDetails });
+      updateUser(currentUser.uid, { 
+        college: collegeDetails, 
+        status: "3" 
+      });
 
       toast.success("College details saved!");
-      next();
+      next(); 
     } catch (error) {
       toast.error(error.message);
     }
