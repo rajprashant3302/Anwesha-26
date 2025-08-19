@@ -18,7 +18,7 @@ export default function RegisterPage() {
 
 
   return (
-    <div className="">
+    <div className="max-w-lg mx-auto mt-10 shadow-lg p-6 rounded bg-black text-white">
       {step === 1 && (
         <Step1EmailPassword
           formData={formData}
