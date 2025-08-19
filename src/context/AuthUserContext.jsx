@@ -10,10 +10,9 @@ export function AuthUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
   // Register new user
-
-const registerUser = async (email, password) => {
+  const registerUser = async (email, password) => {
   try {
-    
+    // Try to create a new user
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
 
@@ -21,17 +20,19 @@ const registerUser = async (email, password) => {
     const snap = await getDoc(ref);
 
     if (snap.exists()) {
+      // User doc already exists → use it
       const existingData = snap.data();
       setCurrentUser(existingData);
       return existingData;
     } else {
+      // New user → create Firestore doc
       const userDoc = {
         uid: user.uid,
         email: user.email,
         emailVerified: user.emailVerified,
         anweshaId: null,
         createdAt: Date.now(),
-        status: "1",
+        status: "1", // first step
         personal: {},
         college: {},
         qrEnabled: false,
@@ -45,7 +46,7 @@ const registerUser = async (email, password) => {
     }
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
-     
+      // Instead of create → sign in
       const res = await signInWithEmailAndPassword(auth, email, password);
       const user = res.user;
 
@@ -54,8 +55,9 @@ const registerUser = async (email, password) => {
 
       if (snap.exists()) {
         const existingData = snap.data();
+        // ✅ Always refresh local state with latest Firestore user doc
         setCurrentUser(existingData);
-        return existingData; 
+        return existingData;
       }
     }
 

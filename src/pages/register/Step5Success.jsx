@@ -11,12 +11,12 @@ export default function Step5Success({ anweshaId }) {
   const [countdown, setCountdown] = useState(20);
 
   useEffect(() => {
-   
+    // Countdown timer
     const interval = setInterval(() => {
       setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    
+    // Redirect after 20 seconds
     const timer = setTimeout(() => {
       navigate("/dashboard");
     }, 20000);
