@@ -20,7 +20,7 @@ export default function Razorpay({ event }) {
     }
 
     const options = {
-      key: "rzp_test_1234567890abcdef", // ⚠️ Replace with your Razorpay key
+      key: "rzp_test_1234567890abcdef", // ⚠ Replace with your Razorpay key
       amount: event.price * 100, // amount in paise
       currency: "INR",
       name: "Event Registration",

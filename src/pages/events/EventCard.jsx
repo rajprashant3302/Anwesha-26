@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function EventCard({ event }) {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden w-80">
-      <img
+      <image
         src={event.image}
         alt={event.name}
         className="w-full h-40 object-cover"
@@ -17,8 +17,7 @@ export default function EventCard({ event }) {
         <p className="mt-2 font-bold">₹{event.price}</p>
         <Link
           to={`/event/${event.id}`}
-          className="mt-3 inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-        >
+          className="mt-3 inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
           View Details
         </Link>
       </div>

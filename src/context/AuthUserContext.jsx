@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc ,getDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc ,getDoc} from "firebase/firestore";
+
 import toast from "react-hot-toast";
 
 const AuthUserContext = createContext();
@@ -91,9 +92,53 @@ const updateUser = async (uid, updatedData) => {
     return anweshaId;
   };
 
+  //sign in 
+  // const loginUser=async (email, password) => {
+  //   try{
+  //           const res=await signInWithEmailAndPassword(auth, email, password);
+  //           toast.success("Login successful!");
+
+  //           const data=await getDoc(doc(db, "users",res.user.uid));
+  //           setCurrentUser(data)
+
+  //           return data;
+
+  //   }catch(error){
+  //     toast.error(error.message)
+  //   }
+  // }
+
+  const loginUser = async (email, password) => {
+  try {
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    toast.success("Login successful!");
+
+    // Get Firestore user document
+    const userDoc = await getDoc(doc(db, "users", res.user.uid));
+    localStorage.setItem("uid",res.user.uid)
+
+    if (userDoc.exists()) {
+      const userData = userDoc.data();  // extract fields
+      setCurrentUser( userData );
+      return userData ;
+    } else {
+      console.log("No such document!");
+      setCurrentUser(res.user); // fallback to auth user only
+      return res.user;
+    }
+
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
+
+  //access all info from db by uid
+
+  
 
   return (
-    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser ,finalizeRegistration}}>
+    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser ,finalizeRegistration,loginUser}}>
       {children}
     </AuthUserContext.Provider>
   );
