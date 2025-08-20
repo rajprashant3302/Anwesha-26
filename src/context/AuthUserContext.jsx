@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc ,getDoc} from "firebase/firestore";
-
+import { doc, setDoc, getDoc, collection, query, where, getDocs } from "firebase/firestore"; // ✅ added imports
 import toast from "react-hot-toast";
 
 const AuthUserContext = createContext();
@@ -10,10 +9,9 @@ const AuthUserContext = createContext();
 export function AuthUserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Register new user
-  const registerUser = async (email, password) => {
+const registerUser = async (email, password) => {
   try {
-    // Try to create a new user
+    // 1️⃣ Try creating a new user
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
 
@@ -24,6 +22,7 @@ export function AuthUserProvider({ children }) {
       // User doc already exists → use it
       const existingData = snap.data();
       setCurrentUser(existingData);
+      toast.success("Logged in successfully!");
       return existingData;
     } else {
       // New user → create Firestore doc
@@ -33,36 +32,77 @@ export function AuthUserProvider({ children }) {
         emailVerified: user.emailVerified,
         anweshaId: null,
         createdAt: Date.now(),
-        status: "1", // first step
+        status: "1",
         personal: {},
         college: {},
         qrEnabled: false,
         qrTokenId: null,
         events: [],
       };
-
       await setDoc(ref, userDoc);
       setCurrentUser(userDoc);
+      toast.success("Account created successfully!");
       return userDoc;
     }
   } catch (error) {
+    console.log("Auth error:", error);
+
+    // 2️⃣ Handle email already in use → attempt sign-in
     if (error.code === "auth/email-already-in-use") {
-      // Instead of create → sign in
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      const user = res.user;
+      try {
+        const res = await signInWithEmailAndPassword(auth, email, password);
+        const user = res.user;
 
-      const ref = doc(db, "users", user.uid);
-      const snap = await getDoc(ref);
+        const ref = doc(db, "users", user.uid);
+        const snap = await getDoc(ref);
 
-      if (snap.exists()) {
-        const existingData = snap.data();
-        // ✅ Always refresh local state with latest Firestore user doc
-        setCurrentUser(existingData);
-        return existingData;
+        if (snap.exists()) {
+          const existingData = snap.data();
+          setCurrentUser(existingData);
+          toast.success("Logged in successfully!");
+          return existingData;
+        } else {
+          // Fallback: user exists in Auth but not in Firestore
+          const userDoc = {
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            anweshaId: null,
+            createdAt: Date.now(),
+            status: "1",
+            personal: {},
+            college: {},
+            qrEnabled: false,
+            qrTokenId: null,
+            events: [],
+          };
+          await setDoc(ref, userDoc);
+          setCurrentUser(userDoc);
+          toast.success("Account synced successfully!");
+          return userDoc;
+        }
+      } catch (signInError) {
+        // Sign-in errors
+        if (signInError.code === "auth/wrong-password") {
+          toast.error("Incorrect password. Please try again.");
+        } else if (signInError.code === "auth/user-not-found") {
+          toast.error("No account found with this email.");
+        } else {
+          toast.error(signInError.message || "Sign-in failed. Please try again.");
+        }
+        return null;
       }
     }
 
-    toast.error(error.message);
+    // 3️⃣ Handle other errors
+    if (error.code === "auth/invalid-email") {
+      toast.error("Invalid email address.");
+    } else if (error.code === "auth/weak-password") {
+      toast.error("Password is too weak. Use 8+ characters with letters and numbers.");
+    } else {
+      toast.error(error.message || "Something went wrong. Please try again.");
+    }
+
     return null;
   }
 };
@@ -133,12 +173,31 @@ const updateUser = async (uid, updatedData) => {
 };
 
 
+const handleSearchByAnweshaId = async (anweshaId) => {
+    try {
+      console.log("search")
+      const q = query(collection(db, "users"), where("anweshaId", "==", anweshaId));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        return userData;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Error searching user:", error);
+      return null;
+    }
+  };
+
+
   //access all info from db by uid
 
   
 
   return (
-    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser ,finalizeRegistration,loginUser}}>
+    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser ,finalizeRegistration,loginUser,handleSearchByAnweshaId}}>
       {children}
     </AuthUserContext.Provider>
   );

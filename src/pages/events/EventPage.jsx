@@ -1,3 +1,4 @@
+
 // src/pages/EventPage.jsx
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -20,6 +21,10 @@ export default function EventPage() {
       <h1 className="text-2xl font-bold mt-4">{event.name}</h1>
       <p className="text-gray-500">{event.date}</p>
       <p className="mt-4">{event.description}</p>
+<p className="mt-2 text-gray-700">
+  Team Size: {event.minTeamSize} - {event.maxTeamSize}
+</p>
+
       <p className="mt-4 font-bold text-lg">Price: ₹{event.price}</p>
       <div className="mt-6">
         <Razorpay event={event} />

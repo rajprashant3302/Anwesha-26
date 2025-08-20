@@ -4,6 +4,7 @@ import { db } from "../../firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 import { useAuthUser } from "../../context/AuthUserContext";
 import toast from "react-hot-toast";
+import { GraduationCap, Calendar, MapPin } from "lucide-react";
 
 export default function Step3CollegeDetails({ next }) {
   const { currentUser, updateUser } = useAuthUser();
@@ -20,63 +21,88 @@ export default function Step3CollegeDetails({ next }) {
     }
 
     try {
-      const collegeDetails = {
-        name: collegeName,
-        passingYear,
-        city,
-      };
+      const collegeDetails = { name: collegeName, passingYear, city };
 
       await updateDoc(doc(db, "users", currentUser.uid), {
         college: collegeDetails,
         status: "3",
       });
 
-      updateUser(currentUser.uid, { 
-        college: collegeDetails, 
-        status: "3" 
-      });
-
+      updateUser(currentUser.uid, { college: collegeDetails, status: "3" });
       toast.success("College details saved!");
-      next(); 
+      next();
     } catch (error) {
       toast.error(error.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="text-xl font-bold">Step 3: College Details</h2>
+    <div className="flex items-center justify-center mb-14 px-2">
+      <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg backdrop-blur-lg text-center  bg-white/80 animate-fade-in">
+        {/* Heading */}
+        <h3 className="text-3xl font-extrabold mb-6 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+          Step 3: College Details
+        </h3>
+        <p className="text-gray-800 mb-8">Please provide your college information to continue</p>
 
-      <input
-        type="text"
-        placeholder="College Name"
-        value={collegeName}
-        onChange={(e) => setCollegeName(e.target.value)}
-        className="w-full p-2 rounded text-white bg-gray-800"
-        required
-      />
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left">
+          {/* College Name */}
+          <div className="relative">
+            <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
+            <input
+              type="text"
+              placeholder="Enter your college name"
+              value={collegeName}
+              onChange={(e) => setCollegeName(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
+                         border-2 border-transparent focus:border-blue-400 
+                         focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
+              required
+            />
+          </div>
 
-      <input
-        type="number"
-        placeholder="Passing Year (e.g. 2026)"
-        value={passingYear}
-        onChange={(e) => setPassingYear(e.target.value)}
-        className="w-full p-2 rounded text-white bg-gray-800"
-        required
-      />
+          {/* Passing Year */}
+          <div className="relative">
+            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
+            <input
+              type="number"
+              placeholder="e.g. 2026"
+              value={passingYear}
+              onChange={(e) => setPassingYear(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
+                         border-2 border-transparent focus:border-green-400 
+                         focus:ring-2 focus:ring-green-200 placeholder-gray-500"
+              required
+            />
+          </div>
 
-      <input
-        type="text"
-        placeholder="City of College"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="w-full p-2 rounded text-white bg-gray-800"
-        required
-      />
+          {/* City */}
+          <div className="relative">
+            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
+            <input
+              type="text"
+              placeholder="Enter city of your college"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
+                         border-2 border-transparent focus:border-purple-400 
+                         focus:ring-2 focus:ring-purple-200 placeholder-gray-500"
+              required
+            />
+          </div>
 
-      <button type="submit" className="bg-blue-500 px-4 py-2 rounded w-full">
-        Save & Continue
-      </button>
-    </form>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
+                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
+                       transform hover:scale-105 hover:shadow-blue-400/50"
+          >
+            Save & Continue →
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
