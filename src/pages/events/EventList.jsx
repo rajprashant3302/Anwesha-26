@@ -11,6 +11,8 @@ const events = [
     description: "Full description of the Tech Fest event goes here...",
     image: "https://tse2.mm.bing.net/th/id/OIP.8f81qAbZxXmbtdi6Uve0bwHaEK?pid=Api&P=0&h=180",
     price: 500,
+    minTeamSize: 1,
+    maxTeamSize: 1,   // 
   },
   {
     id: 2,
@@ -20,6 +22,8 @@ const events = [
     description: "Enjoy performances by top artists...",
     image: "https://tse3.mm.bing.net/th/id/OIP.ejVoU7mLTLPQslj_Az8DEwHaEO?pid=Api&P=0&h=180",
     price: 300,
+    minTeamSize: 1,
+    maxTeamSize: 4,   // group
   },
 ];
 

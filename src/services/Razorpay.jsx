@@ -1,7 +1,10 @@
 // src/components/Razorpay.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Razorpay({ event }) {
+  const navigate = useNavigate();
+
   const loadScript = (src) => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -28,7 +31,14 @@ export default function Razorpay({ event }) {
       image: "https://via.placeholder.com/100",
       handler: function (response) {
         alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-        // 👉 You can save user + payment info to Firebase Firestore here
+        // 👉 Save user + payment info to Firebase/DB here
+
+        // Redirect based on team size
+        if (event.maxTeamSize > 1) {
+          navigate(`/event/${event.id}/add-members`);
+        } else {
+          navigate("/success"); // create a success page for solo registrations
+        }
       },
       prefill: {
         name: "Test User",

@@ -6,6 +6,8 @@ import LoginPage from "../pages/login/LoginPage";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
 import EventList from "../pages/events/EventList"
 import EventPage from "../pages/events/EventPage"
+import AddMembersPage from "../pages/events/AddMembersPage";
+import DecodeQr from "../Verification/DecodeQr"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,11 +50,27 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
-            {
+      {
         path: "/dashboard",
         element: (
           <AuthLayouts>
-           <DashboardPage/>
+            <DashboardPage />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "/event/:id/add-members",
+        element: (
+          <AuthLayouts>
+            <AddMembersPage />
+          </AuthLayouts>
+        )
+      },
+      {
+        path: "/verify",
+        element: (
+          <AuthLayouts>
+            <DecodeQr />
           </AuthLayouts>
         ),
       },

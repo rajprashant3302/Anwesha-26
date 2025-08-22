@@ -1,23 +1,49 @@
 import SHA256 from "crypto-js/sha256";
 
+// ⚠️ Keep this secret key safe and do NOT expose it in frontend ideally
+const SECRET_KEY = import.meta.env.VITE_SECRET_KEY_QR_HASHING;
+
+// Generate secure QR payload
 export const generateQrPayload = (user) => {
-  if (!user) return "";
+  if (!user || !user.anweshaId) return "";
 
-  const userDataString = `${user.anweshaId}|${user.firstName}|${user.lastName}|${user.email}|${user.contact}|${user.college}`;
+  // Combine all user info you want to secure
+  const userDataString = [
+    user.anweshaId,
+    user.firstName,
+    user.lastName,
+    user.email,
+    user.contact || "",
+    user.college || "",
+    user.dob || "",
+    user.gender || ""
+  ].join("|");
 
-  const hash = SHA256(userDataString).toString();
+  // Add secret key to hash
+  const hash = SHA256(userDataString + SECRET_KEY).toString();
 
+<<<<<<< HEAD
   return `${hash}`;
+=======
+  // Encode user data (base64) to avoid exposing plain text
+  const base64Data = btoa(userDataString);
+
+  // Final QR payload: base64 data + hash
+  return `${base64Data}|${hash}`;
+>>>>>>> 269429786e3af6365d39294b26f8b10816c48daf
 };
 
+// Verify QR payload
 export const verifyQrPayload = (qrString) => {
   if (!qrString) return false;
 
   const parts = qrString.split("|");
-  const receivedHash = parts.pop();
-  const originalData = parts.join("|");
+  if (parts.length !== 2) return false;
 
-  const recalculatedHash = SHA256(originalData).toString();
+  const [base64Data, receivedHash] = parts;
+  const originalData = atob(base64Data); // decode base64
+
+  const recalculatedHash = SHA256(originalData + SECRET_KEY).toString();
 
   return receivedHash === recalculatedHash;
 };
