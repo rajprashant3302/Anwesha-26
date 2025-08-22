@@ -7,7 +7,7 @@ export const generateQrPayload = (user) => {
 
   const hash = SHA256(userDataString).toString();
 
-  return `${userDataString}|${hash}`;
+  return `${hash}`;
 };
 
 export const verifyQrPayload = (qrString) => {
