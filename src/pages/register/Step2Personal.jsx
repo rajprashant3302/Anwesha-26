@@ -6,6 +6,7 @@ import { User, Calendar, Phone, MapPin } from "lucide-react";
 
 const Step2Personal = ({ onNext, formData, setFormData }) => {
   const { currentUser, updateUser } = useAuthUser();
+  const [isDisabled, setDisabled] = useState(false);
   const [localData, setLocalData] = useState({
     firstName: formData.firstName || "",
     lastName: formData.lastName || "",
@@ -29,6 +30,7 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     if (!currentUser) return toast.error("Please login first");
 
     if (localData.phone.length !== 10) {
@@ -62,22 +64,24 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
       onNext();
     } catch (err) {
       toast.error("Error saving personal info: " + err.message);
+    } finally {
+      setDisabled(false); // re-enable form after error
     }
   };
 
   return (
     <div className="flex items-center justify-center mb-14 px-2">
       <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg text-center animate-fade-in  bg-white/80 backdrop-blur-lg">
-        
+
         {/* Heading */}
         <h3 className="text-3xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
           Personal Information
         </h3>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left">
-          
+
           {/* First + Last Name */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-col sm:flex-row">
             <div className="relative flex-1">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
               <input
@@ -110,15 +114,21 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
           <div className="relative">
             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
             <input
-              type="date"
+              type={localData.dob ? "date" : "text"}
               name="dob"
+              placeholder="Date of Birth"
               value={localData.dob}
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => {
+                if (!localData.dob) e.target.type = "text";
+              }}
               onChange={handleChange}
               className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
-                         focus:border-blue-400 focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
+               focus:border-blue-400 focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
               required
             />
           </div>
+
 
           {/* Gender */}
           <div className="relative">
@@ -172,9 +182,10 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
             type="submit"
             className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
                        text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
-                       transform hover:scale-105 hover:shadow-blue-400/50"
+                       transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isDisabled}
           >
-            Save & Next ➡️
+            {isDisabled ? "Processing..." : "Save & Next →"}
           </button>
         </form>
       </div>

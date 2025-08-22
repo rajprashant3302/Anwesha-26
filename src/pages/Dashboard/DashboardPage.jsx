@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase/firebaseConfig";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useAuthUser } from "../../context/AuthUserContext.jsx";
 import QRCode from "react-qr-code";
@@ -12,26 +11,7 @@ export default function Dashboard() {
   const [showQr, setShowQr] = useState(false);
   const [qrValue, setQrValue] = useState("");
   const navigate = useNavigate();
-  const { currentUser } = useAuthUser();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
-      if (authUser) {
-        const docRef = doc(db, "users", authUser.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-        } else {
-          toast.error("User data not found in Firestore!");
-        }
-      } else {
-        navigate("/login");
-      }
-    });
-
-    return () => unsubscribe();
-  }, [navigate]);
+  const { currentUser, loading } = useAuthUser();
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -53,8 +33,8 @@ export default function Dashboard() {
       email: currentUser.email,
       contact: currentUser.contact?.phone,
       college: currentUser.college?.name,
-      dob:currentUser.personal.dob,
-      gender:currentUser.personal.gender,
+      dob: currentUser.personal.dob,
+      gender: currentUser.personal.gender,
 
     });
     // console.log(payload)
@@ -63,8 +43,13 @@ export default function Dashboard() {
     setShowQr(true);
   };
 
-  if ( !currentUser)
+  if (loading)
     return <p className="text-center mt-10">Loading...</p>;
+
+  if (!currentUser) {
+    navigate("/login");
+    return null;
+  }
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 p-4">

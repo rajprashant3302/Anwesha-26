@@ -18,10 +18,10 @@ export default function Signin() {
     setDisabled(true);
     try {
       await loginUser(email, password);
-      toast.success("Signed in successfully!");
+      // toast.success("Signed in successfully!");
       navigate("/dashboard");
     } catch (error) {
-      toast.error("Invalid email or password");
+      // toast.error("Invalid email or password");
       setDisabled(false);
     }
   };

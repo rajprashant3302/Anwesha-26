@@ -11,9 +11,11 @@ export default function Step3CollegeDetails({ next }) {
   const [collegeName, setCollegeName] = useState(currentUser?.college?.name || "");
   const [passingYear, setPassingYear] = useState(currentUser?.college?.passingYear || "");
   const [city, setCity] = useState(currentUser?.college?.city || "");
+  const [isDisabled, setDisabled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
 
     if (!currentUser?.uid) {
       toast.error("User not found. Please login again.");
@@ -33,7 +35,10 @@ export default function Step3CollegeDetails({ next }) {
       next();
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setDisabled(false); // re-enable form after error
     }
+
   };
 
   return (
@@ -67,7 +72,7 @@ export default function Step3CollegeDetails({ next }) {
             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
             <input
               type="number"
-              placeholder="e.g. 2026"
+              placeholder="Passing Year e.g. 2028"
               value={passingYear}
               onChange={(e) => setPassingYear(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
@@ -97,9 +102,10 @@ export default function Step3CollegeDetails({ next }) {
             type="submit"
             className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
                        text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
-                       transform hover:scale-105 hover:shadow-blue-400/50"
+                       transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isDisabled}
           >
-            Save & Continue →
+            {isDisabled ? "Processing..." : "Save & Next →"} 
           </button>
         </form>
       </div>

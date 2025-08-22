@@ -17,7 +17,7 @@ export default function Step5Success({ anweshaId }) {
     }, 1000);
 
     const timer = setTimeout(() => {
-      navigate("/dashboard");
+      navigate("/login");
     }, 20000);
 
     return () => {
@@ -54,18 +54,18 @@ export default function Step5Success({ anweshaId }) {
         {/* Redirect Info */}
         <div className="mt-8 bg-gray-100 px-5 py-3 rounded-xl shadow-inner border border-gray-200">
           <p className="text-gray-700">
-            Redirecting to your <span className="font-semibold text-black">Dashboard</span> in{" "}
+            Redirecting to your <span className="font-semibold text-black">Login Page</span> in{" "}
             <span className="text-yellow-600 font-bold">{countdown}</span> seconds...
           </p>
         </div>
 
         {/* Manual Redirect Button */}
         <button
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/login")}
           className="mt-8 px-6 py-3 rounded-xl bg-gradient-to-r from-[#41D7B7] to-[#095DB7] text-white font-bold shadow-lg 
                      hover:from-[#095DB7] hover:to-[#41D7B7] transition-all duration-300 transform hover:scale-105"
         >
-          Go to Dashboard Now
+          Go to Login Page Now
         </button>
       </div>
     </div>
