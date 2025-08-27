@@ -7,6 +7,7 @@ import DashboardPage from "../pages/Dashboard/DashboardPage";
 import EventList from "../pages/events/EventList"
 import EventPage from "../pages/events/EventPage"
 import AddMembersPage from "../pages/events/AddMembersPage";
+import Home from "../pages/HomePage/HomePage";
 import DecodeQr from "../Verification/DecodeQr"
 const router = createBrowserRouter([
   {
@@ -14,8 +15,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true, // 👈 default page at "/"
-        element: <h1 className="text-3xl p-5">Welcome to Anwesha 🚀</h1>,
+        index: "/", 
+        element: <Home/>,
       },
       {
         path: "register",
