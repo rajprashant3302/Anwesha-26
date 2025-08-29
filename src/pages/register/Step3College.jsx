@@ -43,12 +43,12 @@ export default function Step3CollegeDetails({ next }) {
 
   return (
     <div className="flex items-center justify-center mb-14 px-2">
-      <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg backdrop-blur-lg text-center  bg-white/80 animate-fade-in">
+      <div className="rounded-3xl shadow-2xl  p-10 w-full max-w-lg backdrop-blur-lg text-center  bg-none animate-fade-in">
         {/* Heading */}
         <h3 className="text-3xl font-extrabold mb-6 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
           Step 3: College Details
         </h3>
-        <p className="text-gray-800 mb-8">Please provide your college information to continue</p>
+        <p className="text-slate-300 mb-8">Please provide your college information to continue</p>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left">
@@ -101,7 +101,7 @@ export default function Step3CollegeDetails({ next }) {
           <button
             type="submit"
             className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
+                       text-white font-bold py-3 rounded-xl w-fit px-5 mx-auto shadow-lg transition-all duration-300 
                        transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isDisabled}
           >

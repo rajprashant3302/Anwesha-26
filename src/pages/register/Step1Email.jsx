@@ -33,8 +33,8 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
   };
 
   return (
-    <div className="flex items-center justify-center mb-14  sm:px-6">
-      <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-md bg-white/80 text-center animate-fade-in">
+    <div className="flex items-center  justify-center mb-14  sm:px-6">
+      <div className="rounded-3xl shadow-2xl  p-10 w-full max-w-md bg-none text-center animate-fade-in">
         <h3 className="text-4xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
           Dive into Multicity
         </h3>
@@ -49,7 +49,7 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email Address"
-              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
+              className="w-full pl-12 pr-12 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
                          focus:border-blue-400 focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
               required
             />
@@ -77,7 +77,7 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
             </button>
           </div>
 
-          <p className="text-xs text-left text-gray-800">
+          <p className="text-xs text-left text-slate-200">
             Password must be <span className="font-semibold">8+ characters</span>, include <span className="font-semibold">a letter</span> and <span className="font-semibold">a number</span>.
           </p>
 
@@ -89,7 +89,7 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
                        transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isDisabled}
           >
-            {isDisabled ? "Processing..." : "Next →"}
+            {isDisabled ? "Processing..." : "NEXT"}
           </button>
         </form>
 
