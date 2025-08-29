@@ -25,13 +25,13 @@ export default function Signin() {
       setDisabled(false);
     }
   };
-
+  // from-[#374f37] to-[#aefaea] 
   return (
-    <div className="flex items-center justify-center min-h-[100vh] bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 px-6">
-      <div className="rounded-3xl shadow-2xl border border-white p-10 w-full max-w-md bg-white/80 text-center animate-fade-in">
+    <div className="flex items-center justify-center min-h-[100vh] bg-[url('registerBg.jpg')] bg-cover bg-center  px-5 md:px-6">
+      <div className=" w-90  md:w-96  rounded-2xl shadow-[10px_0px_500px_rgba(0,0,0,1)] p-6  max-w-md text-center animate-fade-in bg-white/20 backdrop-blur-lg">
         
         {/* Heading */}
-        <h3 className="text-5xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+        <h3 className="text-4xl px-4  md:5xl font-extrabold mb-8 bg-gradient-to-l to-[#07b707] from-[#899290] bg-clip-text text-transparent">
           Welcome Back
         </h3>
 
@@ -46,7 +46,7 @@ export default function Signin() {
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
+              className="w-full pl-12 pr-4 py-3 rounded-lg text-black bg-white/60 outline-none border-2 border-transparent 
                          focus:border-blue-400 focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
               required
             />
@@ -56,11 +56,10 @@ export default function Signin() {
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
             <input
-              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-12 pr-12 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
+              className="w-full pl-12 pr-12 py-3 rounded-lg text-black bg-white/60 outline-none border-2 border-transparent 
                          focus:border-green-400 focus:ring-2 focus:ring-green-200 placeholder-gray-500"
               required
             />
@@ -77,8 +76,8 @@ export default function Signin() {
           <button
             type="submit"
             disabled={isDisabled}
-            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
+            className="bg-gradient-to-r to-[#0ce66b] from-[rgb(72,235,200)] hover:from-[#0ce66b] hover:to-[rgb(72,235,200)] 
+                       text-white font-bold py-3 rounded-xl w-fit px-13 cursor-pointer mx-auto shadow-lg transition-all duration-300 
                        transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isDisabled ? "Signing In..." : "Sign In"}
@@ -86,11 +85,11 @@ export default function Signin() {
         </form>
 
         {/* Footer */}
-        <p className="mt-6 text-sm text-gray-600">
+        <p className="mt-6 text-sm text-slate-700">
           Don’t have an account?{" "}
           <span
             onClick={() => navigate("/register")}
-            className="text-[#095DB7] font-semibold cursor-pointer hover:underline"
+            className="text-[#095DB7] font-semibold cursor-pointer underline"
           >
             Sign Up
           </span>

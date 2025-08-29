@@ -1,6 +1,6 @@
 import React from 'react'
 // import logo from ''
-
+// import Footer from '../../Components/Footer/Footer'
 const AuthLayouts = ({ children }) => {
   return (
     <>
@@ -11,6 +11,7 @@ const AuthLayouts = ({ children }) => {
         </div>
       </div>
       {children}
+      {/* <Footer /> */}
     </>
 
 

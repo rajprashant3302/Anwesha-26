@@ -70,8 +70,8 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
   };
 
   return (
-    <div className="flex items-center justify-center mb-14 px-2">
-      <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg text-center animate-fade-in  bg-white/80 backdrop-blur-lg">
+    <div className="flex items-center  justify-center mb-7 px-2">
+      <div className="rounded-3xl shadow-2xl   p-10 w-full max-w-lg text-center animate-fade-in  bg-none backdrop-blur-lg">
 
         {/* Heading */}
         <h3 className="text-3xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
@@ -136,7 +136,7 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
               name="gender"
               value={localData.gender}
               onChange={handleChange}
-              className="w-full pl-4 pr-4 py-3 rounded-xl text-gray-700 bg-white/60 outline-none border-2 border-transparent 
+              className="w-full min-h-4 h-10 pl-4 pr-4 py-3 rounded-xl text-gray-700 bg-white/60 outline-none border-2 border-transparent 
                          focus:border-blue-400 focus:ring-2 focus:ring-blue-200"
               required
             >
@@ -181,7 +181,7 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
           <button
             type="submit"
             className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
+                       text-white font-bold py-3 rounded-xl w-fit px-5 mx-auto shadow-lg transition-all duration-300 
                        transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isDisabled}
           >

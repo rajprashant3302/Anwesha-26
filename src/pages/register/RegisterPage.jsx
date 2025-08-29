@@ -43,13 +43,13 @@ export default function RegisterPage() {
   }, [currentUser]);
 
   return (
-    <div className="flex items-center justify-center min-h-[100vh] bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 sm:px-6">
-      <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl border  border-white/30 p-8 w-full max-w-2xl text-white animate-fade-in">
+    <div className="flex items-center bg-[url('registerBg.jpg')] bg-cover bg-center p-1 mb-5 w-screen  justify-center  sm:px-6">
+      <div className="bg-white/20 scale-80 pt-12  backdrop-blur-lg rounded-2xl  border md:p-8 border-white/30 w-full max-w-2xl shadow-[0_0_5px_rgba(255,255,255,0.7)] animate-fade-in">
         
         {/* Stepper Heading */}
-        <h2 className="text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#41D7B7] to-[#095DB7] bg-clip-text text-transparent">
+        {/* <h2 className="text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#41D7B7] to-[#095DB7] bg-clip-text text-transparent">
           Registration
-        </h2>
+        </h2> */}
 
         {/* Stepper Progress */}
         <div className="flex justify-between items-center mb-10 relative">
