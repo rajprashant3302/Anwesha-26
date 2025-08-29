@@ -22,15 +22,11 @@ export const generateQrPayload = (user) => {
   // Add secret key to hash
   const hash = SHA256(userDataString + SECRET_KEY).toString();
 
-<<<<<<< HEAD
-  return `${hash}`;
-=======
   // Encode user data (base64) to avoid exposing plain text
   const base64Data = btoa(userDataString);
 
   // Final QR payload: base64 data + hash
   return `${base64Data}|${hash}`;
->>>>>>> 269429786e3af6365d39294b26f8b10816c48daf
 };
 
 // Verify QR payload

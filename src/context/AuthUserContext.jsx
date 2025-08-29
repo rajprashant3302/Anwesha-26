@@ -1,7 +1,21 @@
-import React, { createContext, useContext, useState,useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification ,onAuthStateChanged } from "firebase/auth";
-import { doc, setDoc, getDoc, collection, query, where, getDocs, updateDoc } from "firebase/firestore"; // ✅ added imports
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  onAuthStateChanged,
+} from "firebase/auth";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore"; // ✅ added imports
 import toast from "react-hot-toast";
 
 const AuthUserContext = createContext();
@@ -39,16 +53,15 @@ export function AuthUserProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-
-
   const registerUser = async (email, password) => {
     try {
       // 1️⃣ Try creating a new user
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
       await sendEmailVerification(user);
-      toast.success("Verification email sent to your email! Please check your inbox.");
-
+      toast.success(
+        "Verification email sent to your email! Please check your inbox."
+      );
 
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
@@ -72,7 +85,17 @@ export function AuthUserProvider({ children }) {
           college: {},
           qrEnabled: false,
           qrTokenId: null,
-          events: [],
+          events: [
+            // {
+            //   eventId: "robotics",
+            //   teamId: "team_falcon",
+            //   role: "leader",
+            //   paid: true,
+            //   paymentId: "455112gxgf1gf15gf",
+            //   orderId: "23224545",
+            //   amount: 500,
+            // },
+          ],
         };
         await setDoc(ref, userDoc);
         setCurrentUser(userDoc);
@@ -123,7 +146,9 @@ export function AuthUserProvider({ children }) {
           } else if (signInError.code === "auth/user-not-found") {
             toast.error("No account found with this email.");
           } else {
-            toast.error(signInError.message || "Sign-in failed. Please try again.");
+            toast.error(
+              signInError.message || "Sign-in failed. Please try again."
+            );
           }
           return null;
         }
@@ -133,7 +158,9 @@ export function AuthUserProvider({ children }) {
       if (error.code === "auth/invalid-email") {
         toast.error("Invalid email address.");
       } else if (error.code === "auth/weak-password") {
-        toast.error("Password is too weak. Use 8+ characters with letters and numbers.");
+        toast.error(
+          "Password is too weak. Use 8+ characters with letters and numbers."
+        );
       } else {
         toast.error(error.message || "Something went wrong. Please try again.");
       }
@@ -141,7 +168,6 @@ export function AuthUserProvider({ children }) {
       return null;
     }
   };
-
 
   // Update user info in Firestore
   const updateUser = async (uid, updatedData) => {
@@ -155,7 +181,6 @@ export function AuthUserProvider({ children }) {
 
     return { ...currentUser, ...updatedData };
   };
-
 
   const finalizeRegistration = async (uid, formData) => {
     const anweshaId = `ANW-MUL-${Math.floor(100000 + Math.random() * 900000)}`;
@@ -171,31 +196,27 @@ export function AuthUserProvider({ children }) {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       let user = res.user;
-      console.log(user)
+      console.log(user);
 
       await user.reload();
       user = auth.currentUser;
 
-
       if (user.emailVerified) {
-
         const userRef = doc(db, "users", user.uid);
         await updateDoc(userRef, { emailVerified: true });
         // toast.success("Login successful!");
       } else {
         toast.error("Please verify your email first.");
         await sendEmailVerification(user);
-       throw new Error("Email not verified")
-
+        throw new Error("Email not verified");
       }
-
 
       // Get Firestore user document
       const userDoc = await getDoc(doc(db, "users", res.user.uid));
-      localStorage.setItem("uid", res.user.uid)
+      localStorage.setItem("uid", res.user.uid);
 
       if (userDoc.exists()) {
-        const userData = userDoc.data();  // extract fields
+        const userData = userDoc.data(); // extract fields
         if (userData.status != "successful") {
           toast.error("Complete your registration first !");
           throw error;
@@ -207,19 +228,19 @@ export function AuthUserProvider({ children }) {
         setCurrentUser(res.user); // fallback to auth user only
         return res.user;
       }
-
     } catch (error) {
-      if (error)
-        toast.error(error.message || "error");
+      if (error) toast.error(error.message || "error");
       throw error;
     }
   };
 
-
   const handleSearchByAnweshaId = async (anweshaId) => {
     try {
-      console.log("search")
-      const q = query(collection(db, "users"), where("anweshaId", "==", anweshaId));
+      console.log("search");
+      const q = query(
+        collection(db, "users"),
+        where("anweshaId", "==", anweshaId)
+      );
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -234,13 +255,20 @@ export function AuthUserProvider({ children }) {
     }
   };
 
-
   //access all info from db by uid
 
-
-
   return (
-    <AuthUserContext.Provider value={{ currentUser, registerUser, updateUser, finalizeRegistration, loginUser, handleSearchByAnweshaId, loading }}>
+    <AuthUserContext.Provider
+      value={{
+        currentUser,
+        registerUser,
+        updateUser,
+        finalizeRegistration,
+        loginUser,
+        handleSearchByAnweshaId,
+        loading,
+      }}
+    >
       {children}
     </AuthUserContext.Provider>
   );
