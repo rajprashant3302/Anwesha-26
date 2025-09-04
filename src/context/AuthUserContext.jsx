@@ -46,8 +46,6 @@ export function AuthUserProvider({ children }) {
       // 1️⃣ Try creating a new user
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
-      await sendEmailVerification(user);
-      toast.success("Verification email sent to your email! Please check your inbox.");
 
 
       const ref = doc(db, "users", user.uid);
@@ -64,7 +62,7 @@ export function AuthUserProvider({ children }) {
         const userDoc = {
           uid: user.uid,
           email: user.email,
-          emailVerified: user.emailVerified,
+          emailVerified: true,
           anweshaId: null,
           createdAt: Date.now(),
           status: "1",
@@ -167,53 +165,46 @@ export function AuthUserProvider({ children }) {
     return anweshaId;
   };
 
-  const loginUser = async (email, password) => {
-    try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      let user = res.user;
-      console.log(user)
+const loginUser = async (email, password) => {
+  try {
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    const authUser = res.user;
 
-      await user.reload();
-      user = auth.currentUser;
+    // always reload before reading auth fields
+    await authUser.reload();
 
+    // 🔹 get Firestore user document
+    const userRef = doc(db, "users", authUser.uid);
+    const userSnap = await getDoc(userRef);
 
-      if (user.emailVerified) {
-
-        const userRef = doc(db, "users", user.uid);
-        await updateDoc(userRef, { emailVerified: true });
-        // toast.success("Login successful!");
-      } else {
-        toast.error("Please verify your email first.");
-        await sendEmailVerification(user);
-       throw new Error("Email not verified")
-
-      }
-
-
-      // Get Firestore user document
-      const userDoc = await getDoc(doc(db, "users", res.user.uid));
-      localStorage.setItem("uid", res.user.uid)
-
-      if (userDoc.exists()) {
-        const userData = userDoc.data();  // extract fields
-        if (userData.status != "successful") {
-          toast.error("Complete your registration first !");
-          throw error;
-        }
-        setCurrentUser(userData);
-        toast.success("Login Successful");
-        return userData;
-      } else {
-        setCurrentUser(res.user); // fallback to auth user only
-        return res.user;
-      }
-
-    } catch (error) {
-      if (error)
-        toast.error(error.message || "error");
-      throw error;
+    if (!userSnap.exists()) {
+      toast.error("User record not found in Firestore");
+      throw new Error("No Firestore user data");
     }
-  };
+
+    const userData = userSnap.data(); // contains fields you set, like status
+
+    if (userData.status !== "successful") {
+      // toast.error("Please complete your registration");
+      throw new Error("Registration not complete");
+    }
+
+    // Example of updating emailVerified if needed
+    if (authUser.emailVerified) {
+      await updateDoc(userRef, { emailVerified: true });
+    }
+
+    localStorage.setItem("uid", authUser.uid);
+    setCurrentUser(userData);
+    toast.success("Login Successful");
+    return userData;
+
+  } catch (error) {
+    toast.error(error.message || "Login failed");
+    throw error;
+  }
+};
+
 
 
   const handleSearchByAnweshaId = async (anweshaId) => {
