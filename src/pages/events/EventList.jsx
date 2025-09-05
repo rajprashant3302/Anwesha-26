@@ -22,7 +22,7 @@ const events = [
     description: "Enjoy performances by top artists...",
     image: "https://tse3.mm.bing.net/th/id/OIP.ejVoU7mLTLPQslj_Az8DEwHaEO?pid=Api&P=0&h=180",
     price: 300,
-    minTeamSize: 1,
+    minTeamSize: 3,
     maxTeamSize: 4,   // group
   },
 ];
