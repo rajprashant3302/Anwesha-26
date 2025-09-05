@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function EventCard({ event }) {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden w-80">
-      <image
+      <img
         src={event.image}
         alt={event.name}
         className="w-full h-40 object-cover"
