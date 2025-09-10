@@ -45,10 +45,9 @@ export default function Step3CollegeDetails({ next }) {
     <div className="flex items-center justify-center mb-14 px-2">
       <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg backdrop-blur-lg text-center  bg-white/80 animate-fade-in">
         {/* Heading */}
-        <h3 className="text-3xl font-extrabold mb-6 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+        <h3 className="text-5xl font-extrabold mb-9 text-[#433D7F]">
           Step 3: College Details
         </h3>
-        <p className="text-gray-800 mb-8">Please provide your college information to continue</p>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left">
@@ -61,7 +60,7 @@ export default function Step3CollegeDetails({ next }) {
               value={collegeName}
               onChange={(e) => setCollegeName(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
-                         border-2 border-transparent focus:border-blue-400 
+                         border-2 text-xl border-transparent focus:border-blue-400 
                          focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
               required
             />
@@ -76,7 +75,7 @@ export default function Step3CollegeDetails({ next }) {
               value={passingYear}
               onChange={(e) => setPassingYear(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
-                         border-2 border-transparent focus:border-green-400 
+                         border-2 text-xl  border-transparent focus:border-green-400 
                          focus:ring-2 focus:ring-green-200 placeholder-gray-500"
               required
             />
@@ -91,7 +90,7 @@ export default function Step3CollegeDetails({ next }) {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none 
-                         border-2 border-transparent focus:border-purple-400 
+                         border-2 text-xl border-transparent focus:border-purple-400 
                          focus:ring-2 focus:ring-purple-200 placeholder-gray-500"
               required
             />
@@ -100,9 +99,9 @@ export default function Step3CollegeDetails({ next }) {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
-                       transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
+                       font-bold  shadow-lg transition-all duration-300 
+                       transform disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isDisabled}
           >
             {isDisabled ? "Processing..." : "Save & Next →"} 

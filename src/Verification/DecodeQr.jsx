@@ -72,9 +72,9 @@ export default function VerifyQr() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 p-4">
-      <div className="bg-white shadow-md rounded-xl p-6 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Verify QR Payload</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[url('tajmahal_bg.jpg')] p-4">
+      <div className="rounded-3xl shadow-2xl border border-gray-300 p-10 mt-10 bg-white/50 text-center animate-fade-in  w-full max-w-md">
+        <h2 className="text-4xl tracking-wider font-extrabold mb-4 text-center">Verify QR Payload</h2>
 
         {/* Manual input */}
         <input
@@ -82,28 +82,28 @@ export default function VerifyQr() {
           placeholder="Enter QR payload manually"
           value={qrInput}
           onChange={(e) => setQrInput(e.target.value)}
-          className="w-full border rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full  rounded px-4 py-2 mb-4 text-[1.4rem] font-extrabold border-2 focus:outline-none focus:ring-2 hover:scale-102 "
         />
 
         <button
           onClick={handleVerify}
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mb-4"
+          className="w-full text-2xl tracking-widest font-bold bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2 mb-4 hover:scale-102"
         >
           Verify QR
         </button>
 
         <button
           onClick={scannerActive ? stopScanner : startScanner}
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 mb-4"
+          className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102"
         >
           {scannerActive ? "Stop Scanner" : "Scan QR with Camera"}
-        </button>
+        </button> 
 
         {/* Scanner preview */}
         <div id="reader" className="w-full flex justify-center mb-4"></div>
 
         {/* Error message */}
-        {error && <p className="text-red-600 text-center mb-2">{error}</p>}
+        {error && <p className="text-black-600 text-2xl text-center mb-2">{error}</p>}
 
         {/* Display decoded data */}
         {decodedData && (
