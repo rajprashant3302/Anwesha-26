@@ -1,0 +1,82 @@
+.class-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;        /* horizontal scroll */
+  padding: 10px 0;
+  z-index: 2;
+  margin-left: 1.5%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.class-list::-webkit-scrollbar {
+  display: none;           /* hide scrollbar */
+}
+
+.title-cards h2 {
+  margin-left: 23px;
+}
+
+.card {
+  width: 240px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+@media (min-width: 400px) {
+  .card {
+    margin-inline: auto;
+    width: 180px;
+    height:200px; /* Adjust card width for smaller screens */
+  }
+}
+@media (min-width: 330px) {
+  .card {
+    margin-inline: auto;
+    width: 280px;
+    height:300px; /* Adjust card width for smaller screens */
+  }
+}
+@media (min-width: 500px) {
+  .card {
+    height: 400px; /* Adjust card height for medium screens */
+    width: 320px; /* Adjust card width for medium screens */
+  }
+}
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  gap: 20px;
+  cursor: pointer;
+}
+
+.slick-slider .slick-prev {
+  top: 84%; /* Move it to the bottom of the container */
+  left: 0.01%;  /* Adjust horizontal position */
+  transform: translateY(-50%) scale(1.3);
+  z-index: 1; /* Ensure it appears above other elements */
+}
+
+.slick-slider .slick-next {
+  top: 84%; /* Move it to the bottom of the container */
+  right: 1%; 
+  transform: translateY(-50%) scale(1.3);
+}
+
+.slick-arrow:before {
+  color: #fff; /* Example: make arrows white */
+  font-size: 2rem; /* Example: increase size */
+}
+
+.slick-slider {
+  margin-bottom: 3rem; 
+}

@@ -81,7 +81,7 @@ export default function AddMembersPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-6 ">
       <h1 className="text-2xl font-bold mb-4">
         Add Team Members for {event.name}
       </h1>

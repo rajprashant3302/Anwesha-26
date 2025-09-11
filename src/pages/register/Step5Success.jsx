@@ -31,7 +31,7 @@ export default function Step5Success({ anweshaId }) {
       <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-md text-center animate-fade-in bg-white/80 backdrop-blur-lg">
         
         {/* Heading */}
-        <h3 className="text-4xl font-extrabold mb-6 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+        <h3 className="text-5xl font-extrabold mb-6 bg-gradient-to-l text-[#433D7F] bg-clip-text ">
           Registration Successful!
         </h3>
 
@@ -41,8 +41,8 @@ export default function Step5Success({ anweshaId }) {
         </div>
 
         {/* Anwesha ID */}
-        <p className="text-lg text-gray-700">Your unique Anwesha ID is:</p>
-        <p className="text-3xl font-mono font-bold text-yellow-600 mt-3 tracking-wide">
+        <p className="text-xl text-gray-700">Your unique Anwesha ID is:</p>
+        <p className="text-4xl font-mono font-bold text-yellow-600 mt-3 tracking-wide">
           {displayId}
         </p>
 
@@ -54,7 +54,7 @@ export default function Step5Success({ anweshaId }) {
         {/* Redirect Info */}
         <div className="mt-8 bg-gray-100 px-5 py-3 rounded-xl shadow-inner border border-gray-200">
           <p className="text-gray-700">
-            Redirecting to your <span className="font-semibold text-black">Login Page</span> in{" "}
+            Redirecting to your <span className="font-semibold text-black text-lg">Login Page</span> in{" "}
             <span className="text-yellow-600 font-bold">{countdown}</span> seconds...
           </p>
         </div>
@@ -62,8 +62,7 @@ export default function Step5Success({ anweshaId }) {
         {/* Manual Redirect Button */}
         <button
           onClick={() => navigate("/login")}
-          className="mt-8 px-6 py-3 rounded-xl bg-gradient-to-r from-[#41D7B7] to-[#095DB7] text-white font-bold shadow-lg 
-                     hover:from-[#095DB7] hover:to-[#41D7B7] transition-all duration-300 transform hover:scale-105"
+          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
         >
           Go to Login Page Now
         </button>

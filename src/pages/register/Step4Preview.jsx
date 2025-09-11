@@ -25,55 +25,48 @@ export default function Step4Preview({ formData, next }) {
   };
 
   return (
-    <div className="flex items-center justify-center mb-14 px-6">
+    <div className="flex items-center justify-center mb-14 px-6 ">
       <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg text-center animate-fade-in  bg-white/80 backdrop-blur-lg">
         
         {/* Heading */}
-        <h3 className="text-4xl font-extrabold mb-6 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+        <h3 className="text-5xl text-[#433D7F] font-extrabold mb-12 bg">
           Confirm Your Details
         </h3>
-
-        {/* Icon */}
-        <div className="flex items-center justify-center w-20 h-20 mx-auto rounded-full bg-blue-500/10 border border-blue-500 mb-6">
-          <ClipboardList className="w-12 h-12 text-blue-400" />
-        </div>
-
         {/* Preview Details */}
-        <div className="text-left space-y-6">
+        <div className="text-left space-y-6 ">
           {/* Personal */}
-          <div>
-            <h4 className="text-2xl font-semibold text-gray-800 border-b pb-1">Personal Details</h4>
-            <p className="text-gray-800 mt-2 text-lg">
+          <div >
+            <h4 className=" font-semibold text-gray-800 text-2xl border-b pb-1">Personal Details</h4>
+            <p className="text-gray-800 mt-2 text-xl mb-1">
               <b>Name:</b> {currentUser.personal?.firstName} {currentUser.personal?.lastName}
             </p>
-            <p className="text-gray-800 text-lg">
+            <p className="text-gray-800 text-xl mb-1">
               <b>Gender:</b> {currentUser.personal?.gender}
             </p>
           </div>
 
           {/* College */}
           <div>
-            <h4 className="text-2xl font-semibold text-gray-800 border-b pb-1 mb-2">College Details</h4>
-            <p className="text-gray-800 text-lg "><b>College:</b> {currentUser.college?.name}</p>
-            <p className="text-gray-800 text-lg"><b>City:</b> {currentUser.college?.city}</p>
-            <p className="text-gray-800 text-lg"><b>Passing Year:</b> {currentUser.college?.passingYear}</p>
+            <h4 className="text-2xl font-semibold text-gray-800 border-b border-gray-600 pb-1 mb-2">College Details</h4>
+            <p className="text-gray-800 text-xl mb-1"><b>College:</b> {currentUser.college?.name}</p>
+            <p className="text-gray-800 text-xl mb-1"><b>City:</b> {currentUser.college?.city}</p>
+            <p className="text-gray-800 text-xl  mb-1"><b>Passing Year:</b> {currentUser.college?.passingYear}</p>
           </div>
 
           {/* Contact */}
           <div>
             <h4 className="text-2xl font-semibold text-gray-800 border-b pb-1 mb-2">Contact Details</h4>
-            <p className="text-gray-800 text-lg"><b>Phone:</b> {currentUser.contact?.phone}</p>
-            <p className="text-gray-800 text-lg"><b>Address:</b> {currentUser.contact?.address}</p>
+            <p className="text-gray-800 text-xl mb-1"><b>Phone:</b> {currentUser.contact?.phone}</p>
+            <p className="text-gray-800 text-xl mb-1"><b>Address:</b> {currentUser.contact?.address}</p>
           </div>
         </div>
 
         {/* Submit Button */}
         <button
           onClick={handleFinalSubmit}
-          className="mt-8 px-6 py-3 rounded-xl w-full bg-gradient-to-r from-[#41D7B7] to-[#095DB7] text-white font-bold shadow-lg 
-                     hover:from-[#095DB7] hover:to-[#41D7B7] transition-all duration-300 transform hover:scale-105"
+          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
         >
-          ✅ Submit & Register
+          Submit & Register
         </button>
       </div>
     </div>

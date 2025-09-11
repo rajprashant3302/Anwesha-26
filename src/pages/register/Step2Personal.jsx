@@ -74,7 +74,7 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
       <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-lg text-center animate-fade-in  bg-white/80 backdrop-blur-lg">
 
         {/* Heading */}
-        <h3 className="text-3xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+        <h3 className="font-extrabold mb-8 text-[3rem] text-[#433D7F] bg-clip-text ">
           Personal Information
         </h3>
 
@@ -180,9 +180,9 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
           {/* Submit */}
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
-                       transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
+                       font-bold shadow-lg transition-all duration-300 
+                       transform disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             disabled={isDisabled}
           >
             {isDisabled ? "Processing..." : "Save & Next →"}
