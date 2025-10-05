@@ -4,7 +4,7 @@ import EventCard from "./EventCard";
 
 const events = [
   {
-    id: 1,
+    id: "techfest",
     name: "Tech Fest 2025",
     date: "20th Aug 2025",
     shortDescription: "A fest of innovation and ideas",
@@ -12,10 +12,10 @@ const events = [
     image: "https://tse2.mm.bing.net/th/id/OIP.8f81qAbZxXmbtdi6Uve0bwHaEK?pid=Api&P=0&h=180",
     price: 500,
     minTeamSize: 1,
-    maxTeamSize: 1,   // 
+    maxTeamSize: 1,   
   },
   {
-    id: 2,
+    id: "musicNight",
     name: "Music Night",
     date: "25th Aug 2025",
     shortDescription: "An evening of melodies",
@@ -23,7 +23,7 @@ const events = [
     image: "https://tse3.mm.bing.net/th/id/OIP.ejVoU7mLTLPQslj_Az8DEwHaEO?pid=Api&P=0&h=180",
     price: 300,
     minTeamSize: 3,
-    maxTeamSize: 4,   // group
+    maxTeamSize: 4,  
   },
 ];
 
