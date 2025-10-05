@@ -43,11 +43,11 @@ export default function RegisterPage() {
   }, [currentUser]);
 
   return (
-    <div className="flex items-center justify-center min-h-[100vh] bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 sm:px-6">
+    <div className="flex items-center justify-center min-h-[100vh] bg-[url('tajmahal_bg.jpg')] sm:px-6">
       <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl border  border-white/30 p-8 w-full max-w-2xl text-white animate-fade-in">
         
         {/* Stepper Heading */}
-        <h2 className="text-3xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#41D7B7] to-[#095DB7] bg-clip-text text-transparent">
+        <h2 className="text-5xl font-extrabold text-center mb-6 bg-gradient-to-r from-[#471b00]  bg-clip-text text-transparent">
           Registration
         </h2>
 
@@ -62,7 +62,7 @@ export default function RegisterPage() {
                 {/* Circle */}
                 <div
                   className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-bold z-99
-                    ${isActive ? "bg-gradient-to-r from-[#41D7B7] to-[#095DB7] text-white" : "bg-gray-300 text-gray-600"}
+                    ${isActive ? "bg-gradient-to-r from-[#471b00] to-[#d79757] text-white" : "bg-gray-300 text-gray-600"}
                   `}
                 >
                   {stepNumber}
@@ -73,7 +73,7 @@ export default function RegisterPage() {
                 {index < steps.length - 1 && (
                   <div
                     className={`absolute top-5 ml-20 left-[calc(20%+${index * 20}%)]  w-1/5 h-1 
-                    ${isActive && step > stepNumber ? "bg-gradient-to-r from-[#41D7B7] to-[#095DB7]" : "bg-gray-400"}`}
+                    ${isActive && step > stepNumber ? "bg-gradient-to-r from-[#471b00] to-[#d79757]" : "bg-gray-400"}`}
                   ></div>
                 )}
               </div>

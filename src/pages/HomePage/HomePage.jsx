@@ -1,32 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+  const [typedText, setTypedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const textToType = "M ULTICITY";
 
+  useEffect(() => {
+    let charIndex = 0;
+    
+    // Typing effect
+    const typingInterval = setInterval(() => {
+      if (charIndex < textToType.length) {
+        setTypedText((prev) => prev + textToType.charAt(charIndex));
+        charIndex++;
+      } else {
+        // Clear both intervals once typing is complete
+        clearInterval(typingInterval);
+        clearInterval(cursorInterval);
+        setShowCursor(false); // Hide the cursor permanently
+      }
+    }, 200); // Adjust typing speed here (in milliseconds)
+
+    // Blinking cursor effect
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500); // Adjust cursor blink speed
+
+    // Cleanup function
+    return () => {
+      clearInterval(typingInterval);
+      clearInterval(cursorInterval);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[url('/bg_2_cropped.jpg')] bg-cover bg-left">
       <section className="flex flex-col items-center justify-center flex-grow text-center px-6">
-        <h2 className="text-4xl md:text-6xl font-extrabold mb-6">
-          Welcome to <span className="text-purple-500">Anwesha</span>
+        <h2 className="mx-auto text-[#703612] font-[SFIronsides] text-[5rem] md:text-[9rem] lg:text-[9rem] -translate-y-24 md:-translate-y-12 h-fit">
+          ANWESHA'26<br />
         </h2>
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
-          Your gateway to events, registrations, and a seamless experience.
-          Join us today and be a part of something bigger!
-        </p>
-        <div className="space-x-4">
-          <Link
-            to="/register"
-            className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 transition text-lg"
-          >
-            Get Started
-          </Link>
-          <Link
-            to="/login"
-            className="px-6 py-3 rounded-xl border border-purple-500 hover:bg-purple-600 transition text-lg"
-          >
-            Already a Member?
-          </Link>
-        </div>
+
+        <h1 className="mx-auto font-[SFIronsides] text-[6rem] md:text-[13rem] lg:text-[13rem] text-[#703612] h-fit translate-y-[-18vh]">
+          {typedText}
+          {/* Only show the cursor if showCursor is true */}
+          {showCursor && (
+            <span className="transition-opacity duration-300">|</span>
+          )}
+        </h1>
       </section>
     </div>
   );

@@ -62,23 +62,23 @@ export default function Dashboard() {
   if (!currentUser) return null;
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 p-6">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-[url('/tajmahal_bg.jpg')] bg-center bg-cover  p-6 text-[1.3rem]">
       <div className="relative w-full max-w-3xl">
         <button
           onClick={handleLogout}
-          className="absolute top-6 right-6 bg-red-600 text-white py-2 px-5 rounded-xl hover:bg-red-700 transition-shadow shadow-md"
+          className="absolute top-6 right-6 bg-red-600 text-2xl text-white py-2 px-5 rounded-xl hover:bg-red-700 transition-shadow shadow-md"
         >
           Logout
         </button>
 
-        <div className="rounded-3xl shadow-2xl border border-gray-300 p-10 mt-10 bg-white/90 text-center animate-fade-in">
-          <h2 className="text-4xl font-extrabold mb-5 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
-            Welcome, {currentUser.personal.firstName} {currentUser.personal.lastName}
+        <div className="rounded-3xl shadow-2xl border border-gray-300 p-10 mt-10 bg-white/60 text-center animate-fade-in">
+          <h2 className="text-[2rem] md:text-[5rem] text-nowrap font-extrabold mb-5 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
+            Welcome&nbsp;to&nbsp;<i>IIT-P</i> <br /> {currentUser.personal.firstName} {currentUser.personal.lastName}
           </h2>
-          <h3 className="text-xl font-bold mb-8 text-green-600">{currentUser.anweshaId}</h3>
+          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-green-600">{currentUser.anweshaId}</h3>
 
           {/* User & College Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-800 mb-8">
+          <div className="grid grid-cols-1 text-2xl tracking-wider md:grid-cols-2 gap-8 text-gray-800 mb-8">
             <div className="space-y-3 text-left">
               <p><strong>Verification Status:</strong> {currentUser.emailVerified ? "Verified" : "Not verified"}</p>
               <p><strong>Email:</strong> {currentUser.email}</p>
@@ -88,7 +88,7 @@ export default function Dashboard() {
               <p><strong>Address:</strong> {currentUser?.contact?.address || "N/A"}</p>
             </div>
             <div className="space-y-3 text-left">
-              <h3 className="text-lg font-semibold text-red-600 mb-3">College Details</h3>
+              <h3 className="text-3xl font-semibold text-red-600 mb-3">College Details</h3>
               <p><strong>College/University:</strong> {currentUser.college?.name || "N/A"}</p>
               <p><strong>City:</strong> {currentUser.college?.city || "N/A"}</p>
               <p><strong>Passing Year:</strong> {currentUser.college?.passingYear || "N/A"}</p>
@@ -98,7 +98,7 @@ export default function Dashboard() {
           {/* Event Info */}
           {Array.isArray(currentUser.events) && currentUser.events.length > 0 && (
             <div className="md:col-span-2 text-left">
-              <h3 className="text-lg font-semibold text-red-600 mb-4">Event Details</h3>
+              <h3 className="text-3xl font-semibold text-red-600 mb-4">Event Details</h3>
               {currentUser.events.map((event, index) => (
                 <div key={index} className="mb-5 p-4 border border-gray-300 rounded-lg bg-white shadow-sm">
                   <p><strong>Event Id:</strong> {event.eventId || "N/A"}</p>
@@ -122,7 +122,8 @@ export default function Dashboard() {
 
           <button
             onClick={handleShowQr}
-            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-blue-400/50"
+            // className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-blue-400/50"
+            className="text-white  font-bold bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform text-[1.7rem] tracking-wider hover:scale-110"
           >
             View Entry Pass
           </button>

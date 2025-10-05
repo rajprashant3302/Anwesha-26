@@ -9,6 +9,7 @@ import EventPage from "../pages/events/EventPage"
 import AddMembersPage from "../pages/events/AddMembersPage";
 import Home from "../pages/HomePage/HomePage";
 import DecodeQr from "../Verification/DecodeQr"
+import EventCard from "../pages/events/EventCard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
         path: "/event/:id",
         element: (
           <AuthLayouts>
-            <EventPage />
+            <EventPage/>
           </AuthLayouts>
         ),
       },
