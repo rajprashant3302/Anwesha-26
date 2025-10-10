@@ -31,34 +31,16 @@ export default function Navbar() {
 
         {/* Desktop Navigation - Hidden on small screens */}
         <div className="hidden lg:flex flex-grow justify-center space-x-8 text-xl">
+          <Link href="/" className="relative hover:scale-110 group hover:text-amber-500 transition-colors duration-300 px-2 py-1">
+            Home
+            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
+          </Link>
+          <Link href="/about" className="relative hover:scale-110 group hover:text-amber-500 transition-colors duration-300 px-2 py-1">
+            About
+            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
+          </Link>
           <a href="/events" className="relative hover:scale-110 group hover:text-amber-500 transition-colors duration-300 px-2 py-1">
             Events
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
-          </a>
-          <a href="/schedule" className="relative hover:scale-110 group hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            Schedule
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
-          </a>
-          <a href="/merch" className="relative hover:scale-110 group hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            Merch
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
-          </a>
-          <a href="/gallery" className="relative group hover:scale-110 hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            Gallery
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>  
-          </a>
-          <a href="/teams" className="relative group hover:scale-110 hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            Teams
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
-          </a>
-          
-          <a href="/sponsors" className="relative group hover:scale-110 hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            Sponsors
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
-          </a>
-
-          <a href="/about" className="relative text-nowrap group hover:scale-110 hover:text-amber-500 transition-colors duration-300 px-2 py-1">
-            About Us
             <span className="absolute bottom-0 left-0 w-full h-[3px] bg-amber-500 transition-transform duration-300 origin-center transform scale-x-0 group-hover:scale-x-100"></span>
           </a>
           
@@ -66,12 +48,12 @@ export default function Navbar() {
 
         {/* Desktop Buttons - Hidden on small screens to save space */}
         <div className="hidden lg:flex items-center space-x-4">
-          <button className=" sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
-            PROFILE
-          </button>
-          <button className=" sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
-            GET PASSES
-          </button>
+          <Link to='/register' className=" sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
+            REGISTER
+          </Link>
+          <Link to='/login' className=" sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
+            LOGIN
+          </Link>
         </div>
       </div>
 
@@ -83,36 +65,21 @@ export default function Navbar() {
       >
         <div className="flex flex-col p-4 space-y-4">
           <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
+            Home
+          </a>
+          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
+            About
+          </a>
+          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
             Events
           </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Schedule
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Merch
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Gallery
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Teams
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Sponsors
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            About Us
-          </a>
-          <a href="#" className="px-2 py-2 hover:bg-gray-700 rounded-md">
-            Contact Us
-          </a>
           <div className="flex flex-col space-y-2 mt-4">
-            <button className="sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
-              PROFILE
-            </button>
-            <button className="sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
-              GET PASSES
-            </button>
+            <Link to='/register' className="sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
+              REGISTER
+            </Link>
+            <Link to='/login' className="sexy_button hover:sexy_button focus:sexy_button active:sexy_button sexy_btn_bg_2">
+              LOGIN
+            </Link>
           </div>
         </div>
       </div>

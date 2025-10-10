@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate ,Link} from "react-router-dom";
 import { events } from "./EventList";
 
 export default function EventPage() {
@@ -40,12 +40,12 @@ export default function EventPage() {
             
             {/* Custom styled buttons */}
             <div className="flex items-center flex-col gap-8 w-2/3">
-              <button
-                onClick={() => alert("Register clicked!")}
+              <Link
+                to={`/event/${event.id}/add-members`}
                 className="scale-200 sexy_button_register hover:sexy_button_register focus:sexy_button_register active:sexy_button_register sexy_btn_bg_register_black"
               >
                 Register
-              </button>
+              </Link>
               <button
                 onClick={() => alert("Rulebook clicked!")}
                 className="invert sexy_button_rulebook hover:sexy_button_rulebook focus:sexy_button_rulebook active:sexy_button_rulebook sexy_btn_bg_rulebook"
