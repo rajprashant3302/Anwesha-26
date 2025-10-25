@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+// import { HiOutlineDownload } from 'react-icons/hi';
 export default function HomePage() {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
@@ -36,8 +36,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[url('/bg_2_cropped.jpg')] bg-cover bg-left">
-      <section className="flex flex-col items-center justify-center flex-grow text-center px-6">
-        <h2 className="mx-auto text-[#703612] font-[SFIronsides] text-[5rem] md:text-[9rem] lg:text-[9rem] -translate-y-24 md:-translate-y-12 h-fit">
+      {/* <button className="mt-11  mx-auto  border-2 py-1 px-2 text-xl rounded-xl w-fit flex flex-nowrap items-center gap-2  bg-[#6d41b3] border-[#A36EF6]">< HiOutlineDownload className="translate-y-[-1px]" /> Get receipt</button> */}
+      <section className="flex flex-col items-center justify-center flex-grow text-center px-6 -translate-y-24 md:-translate-y-0">
+        <h2 className="mx-auto text-[#703612] scale-90 md:scale-100 font-[SFIronsides] text-[5rem] md:text-[9rem] lg:text-[9rem] -translate-y-24 md:-translate-y-12 h-fit">
           ANWESHA'26<br />
         </h2>
 

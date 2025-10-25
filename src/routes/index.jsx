@@ -10,6 +10,9 @@ import AddMembersPage from "../pages/events/AddMembersPage";
 import Home from "../pages/HomePage/HomePage";
 import DecodeQr from "../Verification/DecodeQr"
 import EventCard from "../pages/events/EventCard";
+import About from "../pages/about/about";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +35,14 @@ const router = createBrowserRouter([
         element: (
           <AuthLayouts>
             <LoginPage />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <AuthLayouts>
+            <About />
           </AuthLayouts>
         ),
       },
@@ -76,6 +87,7 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
+   
 
 
     ],

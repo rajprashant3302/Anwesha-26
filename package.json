@@ -37,6 +37,7 @@
     "react-toastify": "^11.0.5",
     "react-typed": "^2.0.12",
     "slick-carousel": "^1.8.1",
+    "swiper": "^12.0.3",
     "tailwind-variants": "^2.1.0",
     "tailwindcss": "^4.1.12",
     "tailwindcss-animate": "^1.0.7",
