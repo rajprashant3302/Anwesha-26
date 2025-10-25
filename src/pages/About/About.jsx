@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar'
 const About = () => {
   return (
     <div>
-        <p>Big devs work in Progress Stay Away </p>
+        {/* <p>Big devs work in Progress Stay Away </p> */}
     </div>
   )
 }
