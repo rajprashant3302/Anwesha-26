@@ -10,9 +10,7 @@ import AddMembersPage from "../pages/events/AddMembersPage";
 import Home from "../pages/HomePage/HomePage";
 import DecodeQr from "../Verification/DecodeQr"
 import EventCard from "../pages/events/EventCard";
-import About from "../pages/about/about";
-
-
+import Abt from "../pages/Abt/Abt";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +29,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "about",
+        element: (
+          <AuthLayouts>
+            <Abt />
+          </AuthLayouts>
+        ),
+      },
+      {
         path: "login",
         element: (
           <AuthLayouts>
@@ -38,14 +44,7 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
-      {
-        path: "about",
-        element: (
-          <AuthLayouts>
-            <About />
-          </AuthLayouts>
-        ),
-      },
+  
       {
         path: "events",
         element: (
