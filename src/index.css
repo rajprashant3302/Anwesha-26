@@ -56,17 +56,20 @@ html, body {
     text-align: center;
     /* SF/SF - 36 REG */
     /* font-family: 'SFIronside'; */
-    font-size: 1.5rem !important;
+    font-size: 1.3rem ;
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
 
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sexy_button_register {
     /* USE TAILWIND I struggle to name classes :) */
     all: unset;
-    width: 127.338px;
+    width: 150.338px;
     height: 42.135px;
 
     /* flex-shrink: 0; */
@@ -82,17 +85,19 @@ html, body {
     text-align: center;
     /* SF/SF - 36 REG */
     /* font-family: 'SFIronside'; */
-    font-size: 1.2rem !important;
+    font-size: 1.2rem ;
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 .sexy_button_rulebook {
     /* USE TAILWIND I struggle to name classes :) */
     all: unset;
-    width: 127.338px;
+    width: 150.338px;
     height: 42.135px;
 
     /* flex-shrink: 0; */
@@ -144,7 +149,7 @@ html, body {
     filter: drop-shadow(0px -1px 1px white);
 } */
 .sexy_button:hover {
-    filter: drop-shadow(0px -1px 1px #E77B3F);
+    filter: drop-shadow(0px -2px 1px #E77B3F);
     transform: scale(1.05);
     color: var(--Color-Primary500, #E77B3F);
 }
@@ -162,7 +167,7 @@ html, body {
     filter: drop-shadow(0px -1px 1px white);
 } */
 .sexy_button_register:hover {
-    filter: drop-shadow(0px -1px 1px #ffffff);
+    filter: drop-shadow(0px -3px 1px #ffffff);
     color: var(--Color-Primary500, #ffffff);
 }
 .sexy_button_register:active {
@@ -183,7 +188,8 @@ html, body {
     filter: drop-shadow(0px -1px 1px white);
 } */
 .sexy_button_rulebook:hover {
-    filter: drop-shadow(0px -1px 1px #000000);
+    filter: drop-shadow(0px -3px 1px #000000);
+    
     /* transform: scale(1.05); */
     color: var(--Color-Primary500, #000000);
 }
@@ -200,4 +206,11 @@ html, body {
     width: 100%;
     opacity: 1;
   }
+}
+
+ .slick-prev{
+  top: 60% !important;
+}
+ .slick-next{
+  top: 60% !important;
 }

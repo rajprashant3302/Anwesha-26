@@ -26,7 +26,6 @@ export default function EventCard({ event }) {
         
         {/* Short Description */}
         <p className="text-xl">{event.shortDescription}</p>
-       
       </div>
       </Link>
     </div>

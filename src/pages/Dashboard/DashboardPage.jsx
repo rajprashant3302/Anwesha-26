@@ -108,12 +108,13 @@ export default function Dashboard() {
                   <p><strong>Amount:</strong> ₹{event.amount || "N/A"}</p>
 
                   {event.paymentId && (
-                    <button
-                      onClick={() => generatePdf(currentUser, event, qrRef)}
-                      className="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
-                    >
-                      Download Receipt
-                    </button>
+                    // <button
+                    //   onClick={() => generatePdf(currentUser, event, qrRef)}
+                    //   className="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+                    // >
+                    //   Download Receipt
+                    // </button>
+                    <button onClick={() => generatePdf(currentUser, event, qrRef)}>Download</button>
                   )}
                 </div>
               ))}
