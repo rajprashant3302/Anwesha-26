@@ -64,7 +64,7 @@ export default function Step4Preview({ formData, next }) {
         {/* Submit Button */}
         <button
           onClick={handleFinalSubmit}
-          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
+          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
         >
           Submit & Register
         </button>

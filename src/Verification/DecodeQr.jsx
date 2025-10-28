@@ -72,7 +72,7 @@ export default function VerifyQr() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[url('tajmahal_bg.jpg')] p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[url('/tajmahal_bg.jpg')] p-4">
       <div className="rounded-3xl shadow-2xl border border-gray-300 p-10 mt-10 bg-white/50 text-center animate-fade-in  w-full max-w-md">
         <h2 className="text-4xl tracking-wider font-extrabold mb-4 text-center">Verify QR Payload</h2>
 
@@ -87,14 +87,14 @@ export default function VerifyQr() {
 
         <button
           onClick={handleVerify}
-          className="w-full text-2xl tracking-widest font-bold bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2 mb-4 hover:scale-102"
+          className="w-full text-2xl tracking-widest font-bold bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2 mb-4 hover:scale-102"
         >
           Verify QR
         </button>
 
         <button
           onClick={scannerActive ? stopScanner : startScanner}
-          className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102"
+          className="w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102"
         >
           {scannerActive ? "Stop Scanner" : "Scan QR with Camera"}
         </button> 

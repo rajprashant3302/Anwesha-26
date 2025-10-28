@@ -59,7 +59,7 @@ export default function Signin() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[100vh] bg-[url('tajmahal_bg.jpg')] bg-cover bg-center px-6">
+    <div className="flex items-center justify-center min-h-[100vh] bg-[url('/tajmahal_bg.jpg')] bg-cover bg-center px-6">
       <div className="rounded-3xl shadow-2xl border border-white p-10 w-full max-w-md bg-white/80 text-center animate-fade-in">
         <h3 className="text-5xl font-extrabold mb-8 bg-gradient-to-l">
           Welcome Back
@@ -102,7 +102,7 @@ export default function Signin() {
           <button
             type="submit"
             disabled={isDisabled}
-            className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  hover:scale-102 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  hover:scale-102 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isDisabled ? "Signing In..." : "Sign In"}
           </button>

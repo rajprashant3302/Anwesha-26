@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'SF Ironsides'; /* Name for the font */
-    src: url('/font/SF_Ironsides.ttf') format('truetype'); /* Path to the font */
+    src: url('/Fonts/sf_ironsides/SF Ironsides.ttf') format('truetype'); /* Path to the font */
     font-weight: normal; /* Define the weight */
     font-style: normal; /* Define the style */
 }

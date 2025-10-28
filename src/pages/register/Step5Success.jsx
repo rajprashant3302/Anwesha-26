@@ -62,7 +62,7 @@ export default function Step5Success({ anweshaId }) {
         {/* Manual Redirect Button */}
         <button
           onClick={() => navigate("/login")}
-          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
+          className="mt-8 px-6 py-3 w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white mb-4 hover:scale-102"
         >
           Go to Login Page Now
         </button>
