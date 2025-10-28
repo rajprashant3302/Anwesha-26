@@ -180,7 +180,7 @@ const Step2Personal = ({ onNext, formData, setFormData }) => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
+            className="w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
                        font-bold shadow-lg transition-all duration-300 
                        transform disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             disabled={isDisabled}

@@ -43,7 +43,7 @@ export default function RegisterPage() {
   }, [currentUser]);
 
   return (
-    <div className="flex items-center justify-center min-h-[100vh] bg-[url('tajmahal_bg.jpg')] sm:px-6">
+    <div className="flex items-center justify-center min-h-[100vh] bg-[url('/tajmahal_bg.jpg')] sm:px-6">
       <div className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-2xl border  border-white/30 p-8 w-full max-w-2xl text-white animate-fade-in">
         
         {/* Stepper Heading */}

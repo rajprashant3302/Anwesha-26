@@ -124,7 +124,7 @@ export default function Dashboard() {
           <button
             onClick={handleShowQr}
             // className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-blue-400/50"
-            className="text-white  font-bold bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform text-[1.7rem] tracking-wider hover:scale-110"
+            className="text-white  font-bold bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom py-3 px-8 rounded-xl shadow-lg transition-transform duration-300 transform text-[1.7rem] tracking-wider hover:scale-110"
           >
             View Entry Pass
           </button>
