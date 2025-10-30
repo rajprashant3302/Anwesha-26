@@ -1,4 +1,3 @@
-// src/components/EventList.jsx
 import React from "react";
 import EventCard from "./EventCard";
 import Slider from "react-slick";
@@ -6,58 +5,69 @@ import { useState,useEffect } from "react";
 // Import CSS for the carousel
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-// Import your custom card styles
 import "../../../src/components/CardSlider.css";
 
+// 🟡 Updated: Now includes Multicity event pages with their /events/... routes
 const events = [
   {
-    id: "tech_fest",
-    name: "Tech Fest 2025",
-    date: "20th Aug 2025",
-    shortDescription: "A fest of innovation and ideas",
-    description: "Full description of the Tech Fest event goes here...",
-    image: "https://tse2.mm.bing.net/th/id/OIP.8f81qAbZxXmbtdi6Uve0bwHaEK?pid=Api&P=0&h=180",
+    id: "nukkad-natak",
+    name: "🎭 Nukkad Natak",
+    date: "15th Jan 2026",
+    shortDescription: "The Streets. The Stage. Your Voice.",
+    description: "Street theatre competition – pure energy and impact.",
+    image: "/images/nukkad.jpg",
     card_bg: "/anime_girl_black.jpg",
-    price: 500,
-    minTeamSize: 1,
-    maxTeamSize: 1,
+    link: "/events/nukkad-natak",
   },
   {
-    id: "music_night",
-    name: "Music Night",
-    date: "25th Aug 2025",
-    shortDescription: "An evening of melodies",
-    description: "Enjoy performances by top artists...",
-    image: "https://tse3.mm.bing.net/th/id/OIP.ejVoU7mLTLPQslj_Az8DEwHaEO?pid=Api&P=0&h=180",
-    card_bg: "/smiling_joker_1.jpg",
-    price: 300,
-    minTeamSize: 3,
-    maxTeamSize: 4,
-  },
-  {
-    id: "comedy_night",
-    card_bg: "/skull_black.jpg",
-    name: "Comedy Night",
-    date: "28th Aug 2025",
-    shortDescription: "Stand-up comedy show",
-    description: "Full description of the comedy event goes here...",
-    image: "https://tse3.mm.bing.net/th/id/OIP.ejVoU7mLTLPQslj_Az8DEwHaEO?pid=Api&P=0&h=180",
-    price: 400,
-    minTeamSize: 1,
-    maxTeamSize: 1,
-  },
-   {
-    id: "god_fight",
-    name: "GOD FIGHT 2025",
-    date: "20th Aug 2025",
-    shortDescription: "A fest of innovation and ideas",
+    id: "dance-event",
+    name: "💃 Dance Event",
+    date: "16th Jan 2026",
+    shortDescription: "Where movement meets expression.",
+    image: "/images/dance.jpg", 
     card_bg: "/joker_guitar.jpg",
-    description: "Full description of the Tech Fest event goes here...",
-    image: "https://tse2.mm.bing.net/th/id/OIP.8f81qAbZxXmbtdi6Uve0bwHaEK?pid=Api&P=0&h=180",
-    price: 500,
-    minTeamSize: 1,
-    maxTeamSize: 1,
+    link: "/events/dance",
+  },
+
+  {
+    id: "syngphony",
+    name: "🎵 Syngphony",
+    date: "16th Jan 2026",
+    shortDescription: "The musical extravaganza of Anwesha.",
+    description: "Solo and duet performances across genres.",
+    image: "/images/syngphony.jpg",
+    card_bg: "/smiling_joker_1.jpg",
+    link: "/events/syngphony",
+  },
+  {
+    id: "banaras-got-talent",
+    name: "🎤 Banaras Got Talent",
+    date: "17th Jan 2026",
+    shortDescription: "Where creativity meets performance.",
+    description: "A vibrant showcase of Banaras' artistic spirit.",
+    image: "/images/banaras.jpg",
+    card_bg: "/skull_black.jpg",
+    link: "/events/banaras-got-talent",
+  },
+  {
+    id: "vibe-anwesha",
+    name: "📱 Vibe@Anwesha",
+    date: "18th Jan 2026",
+    shortDescription: "Reel-making challenge capturing fest vibes.",
+    description: "Create Instagram reels blending creativity & fest energy.",
+    image: "/images/vibe.jpg",
+    card_bg: "/joker_guitar.jpg",
+    link: "/events/vibe-anwesha",
+  },
+  {
+    id: "meme-challenge",
+    name: "😂 Meme Creation Challenge",
+    date: "19th Jan 2026",
+    shortDescription: "Creativity meets humor.",
+    description: "Make witty memes that celebrate the fest spirit.",
+    image: "/images/meme.jpg",
+    card_bg: "/joker_guitar.jpg",
+    link: "/events/meme-challenge",
   },
 ];
 
@@ -111,13 +121,11 @@ return (
             <div className="card ">
               <EventCard event={event} />
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
 
 export { events };
