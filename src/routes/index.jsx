@@ -19,6 +19,7 @@ import VibeAnwesha from "../pages/events/VibeAnwesha";
 import MemeChallenge from "../pages/events/MemeChallenge";
 import DanceEvent from "../pages/events/DanceEvent";
 
+import Abt from "../pages/Abt/Abt";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "about",
+        element: (
+          <AuthLayouts>
+            <Abt />
+          </AuthLayouts>
+        ),
+      },
+      {
         path: "login",
         element: (
           <AuthLayouts>
@@ -48,6 +57,7 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
+  
       {
         path: "events",
         element: (
@@ -88,6 +98,7 @@ const router = createBrowserRouter([
           </AuthLayouts>
         ),
       },
+   
 
       {
         path: "events/nukkad-natak",

@@ -167,7 +167,7 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
 
             <button
               type="submit"
-              className="w-full text-2xl tracking-widest bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
+              className="w-full text-2xl tracking-widest bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom rounded-xl text-white py-2  mb-4 hover:scale-102
                          cursor-pointer font-bold  shadow-lg transition-all duration-300 
                          transform  disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isDisabled}
@@ -207,7 +207,7 @@ export default function Step1EmailPassword({ formData, setFormData, next }) {
 
             <button
               type="submit"
-              className="bg-[url('bg_2_cropped.jpg')] bg-cover bg-bottom 
+              className="bg-[url('/bg_2_cropped.jpg')] bg-cover bg-bottom 
                          text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
                          transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isDisabled}

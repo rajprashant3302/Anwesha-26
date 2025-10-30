@@ -25,6 +25,16 @@ export default function EventCard({ event }) {
           <p className="text-xl italic">{event.shortDescription}</p>
           <p className="mt-2 text-sm text-gray-300">{event.date}</p>
         </div>
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col justify-end p-6 text-white text-center">
+        {/* Event Name */}
+        <h3 className="font-sf-ironsides text-4xl  mb-2">
+          {event.name}
+        </h3>
+        
+        {/* Short Description */}
+        <p className="text-xl">{event.shortDescription}</p>
+      </div>
       </Link>
     </div>
   );
