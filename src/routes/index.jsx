@@ -1,23 +1,36 @@
+// src/routes/index.jsx
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import AuthLayouts from "../layout/index";
 import RegisterPage from "../pages/register/RegisterPage";
 import LoginPage from "../pages/login/LoginPage";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
-import EventList from "../pages/events/EventList"
-import EventPage from "../pages/events/EventPage"
+import EventList from "../pages/events/EventList";
+import EventPage from "../pages/events/EventPage";
 import AddMembersPage from "../pages/events/AddMembersPage";
 import Home from "../pages/HomePage/HomePage";
-import DecodeQr from "../Verification/DecodeQr"
+import DecodeQr from "../Verification/DecodeQr";
 import EventCard from "../pages/events/EventCard";
+
+import NukkadNatak from "../pages/events/NukkadNatak";
+import Syngphony from "../pages/events/Syngphony";
+import BanarasGotTalent from "../pages/events/BanarasGotTalent";
+import VibeAnwesha from "../pages/events/VibeAnwesha";
+import MemeChallenge from "../pages/events/MemeChallenge";
+import DanceEvent from "../pages/events/DanceEvent";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
-        index: "/", 
-        element: <AuthLayouts><Home/></AuthLayouts>,
+        index: "/",
+        element: (
+          <AuthLayouts>
+            <Home />
+          </AuthLayouts>
+        ),
       },
       {
         path: "register",
@@ -42,18 +55,17 @@ const router = createBrowserRouter([
             <EventList />
           </AuthLayouts>
         ),
-
       },
       {
-        path: "/event/:id",
+        path: "event/:id",
         element: (
           <AuthLayouts>
-            <EventPage/>
+            <EventPage />
           </AuthLayouts>
         ),
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <AuthLayouts>
             <DashboardPage />
@@ -61,15 +73,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/event/:id/add-members",
+        path: "event/:id/add-members",
         element: (
           <AuthLayouts>
             <AddMembersPage />
           </AuthLayouts>
-        )
+        ),
       },
       {
-        path: "/verify",
+        path: "verify",
         element: (
           <AuthLayouts>
             <DecodeQr />
@@ -77,7 +89,55 @@ const router = createBrowserRouter([
         ),
       },
 
+      {
+        path: "events/nukkad-natak",
+        element: (
+          <AuthLayouts>
+            <NukkadNatak />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "/events/dance",
+        element: (
+          <AuthLayouts>
+            <DanceEvent />
+          </AuthLayouts>
+        ),
+      },
 
+      {
+        path: "events/syngphony",
+        element: (
+          <AuthLayouts>
+            <Syngphony />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "events/banaras-got-talent",
+        element: (
+          <AuthLayouts>
+            <BanarasGotTalent />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "events/vibe-anwesha",
+        element: (
+          <AuthLayouts>
+            <VibeAnwesha />
+          </AuthLayouts>
+        ),
+      },
+      {
+        path: "events/meme-challenge",
+        element: (
+          <AuthLayouts>
+            <MemeChallenge />
+          </AuthLayouts>
+        ),
+      },
     ],
   },
 ]);
