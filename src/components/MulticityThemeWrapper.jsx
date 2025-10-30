@@ -42,7 +42,7 @@ export default function MulticityThemeWrapper({ title, subtitle, children }) {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center text-gray-400 py-6 border-t border-gray-700 mt-10 text-sm">
+      <footer className="relative z-10 text-center text-gray-400 py-6 border-t border-transparent mt-10 text-sm">
         © 2026 Anwesha Multicity | IIT Patna
       </footer>
     </div>
